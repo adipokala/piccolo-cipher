@@ -10,7 +10,7 @@ def generate_white_keys(bit, key):
     wk = []
 
     for i in range(bit / 16):
-        k.append(ikey & (0x0000ffff << (i * 16)))
+        k.append((ikey >> (bit / 16) - 1 - i) & 0x0000ffff)
 
     if bit == 80:
         wk.append((k[0] & 0xffff0000)| (k[1] & 0x0000ffff))
@@ -34,7 +34,7 @@ def generate_round_keys(bit, key):
     rk = []
 
     for i in range(bit / 16):
-        k.append(ikey & (0x0000ffff << (i * 16)))
+        k.append((ikey >> (bit / 16 - 1 -i)) & 0x0000ffff)
 
     if bit == 80:
         for i in range(25):
