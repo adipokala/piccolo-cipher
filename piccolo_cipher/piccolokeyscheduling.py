@@ -10,18 +10,18 @@ def generate_white_keys(bit, key):
     wk = []
 
     for i in range(bit / 16):
-        k.append((ikey >> (bit / 16) - 1 - i) & 0x0000ffff)
+        k.append((ikey >> (bit / 16) * i) & 0x0000ffff)
 
     if bit == 80:
-        wk.append((k[0] & 0xffff0000)| (k[1] & 0x0000ffff))
-        wk.append((k[1] & 0xffff0000)| (k[0] & 0x0000ffff))
-        wk.append((k[4] & 0xffff0000)| (k[3] & 0x0000ffff))
-        wk.append((k[3] & 0xffff0000)| (k[4] & 0x0000ffff))
+        wk.append((k[0] & 0xffff0000) | (k[1] & 0x0000ffff))
+        wk.append((k[1] & 0xffff0000) | (k[0] & 0x0000ffff))
+        wk.append((k[4] & 0xffff0000) | (k[3] & 0x0000ffff))
+        wk.append((k[3] & 0xffff0000) | (k[4] & 0x0000ffff))
     elif bit == 128:
-        wk.append((k[0] & 0xffff0000)| (k[1] & 0x0000ffff))
-        wk.append((k[1] & 0xffff0000)| (k[0] & 0x0000ffff))
-        wk.append((k[4] & 0xffff0000)| (k[7] & 0x0000ffff))
-        wk.append((k[7] & 0xffff0000)| (k[4] & 0x0000ffff))
+        wk.append((k[0] & 0xffff0000) | (k[1] & 0x0000ffff))
+        wk.append((k[1] & 0xffff0000) | (k[0] & 0x0000ffff))
+        wk.append((k[4] & 0xffff0000) | (k[7] & 0x0000ffff))
+        wk.append((k[7] & 0xffff0000) | (k[4] & 0x0000ffff))
     else:
         raise InvalidValue('bit=' + str(bit), 'The value of bit can be 80 or 128')
 
@@ -34,7 +34,7 @@ def generate_round_keys(bit, key):
     rk = []
 
     for i in range(bit / 16):
-        k.append((ikey >> (bit / 16 - 1 -i)) & 0x0000ffff)
+        k.append((ikey >> (bit / 16) * i) & 0x0000ffff)
 
     if bit == 80:
         for i in range(25):
