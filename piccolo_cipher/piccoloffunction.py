@@ -23,25 +23,22 @@ sbox = {
 # Diffusion Matrix
 M = [[2, 3, 1, 1], [1, 2, 3, 1], [1, 1, 2, 3], [3, 1, 1, 2]]
 
+# Input of 16 bit data and returns 16 bit data
 def ffunction(x):
-    x16 = []
-    for i in range(4):
-        x16.append((x >> i) & 0xffff)
-
     x4 = []
     for i in range(4):
-        temp = []
-        for j in range(4):
-            temp.append(sbox[(x >> i) & 0xf])
-        x4.append(temp)
+        x4.append((x >> (4 * (3 - i))) & 0xffff)
     
     F = ffield.FField(4)
     x4d = []
     for i in range(4):
         for k in range(4):
             sum = 0
-            for j in range(4):
-                sum += F.Multiply(M[i][j], x4[k][j])
-            x4d.append(sum)
+            sum += F.Multiply(M[i][k], x4[k])
+        x4d.append(sum)
 
-    return x4d
+    new_x = 0
+    for i in range(4):
+        new_x = new_x | (x4d[i] << (4 * (3 - i)))
+
+    return new_x
