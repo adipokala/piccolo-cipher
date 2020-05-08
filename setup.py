@@ -3,6 +3,10 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+with open("requirements.txt", "r") as f:
+    contents = f.read()
+    REQUIREMENTS = [i.strip() for i in contents.strip().split('\n')]
+
 setuptools.setup(
     name="piccolo-cipher",
     version="0.0.0",
@@ -15,6 +19,7 @@ setuptools.setup(
     packages=[
         "piccolo_cipher"
     ],
+    install_requires=REQUIREMENTS,
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
