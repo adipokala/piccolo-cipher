@@ -23,7 +23,7 @@ sbox = {
 # Diffusion Matrix
 M = [[2, 3, 1, 1], [1, 2, 3, 1], [1, 1, 2, 3], [3, 1, 1, 2]]
 
-# Input of 16 bit data and returns 16 bit data
+# Pass 16 bit data and returns 16 bit data
 def ffunction(x):
     x4 = []
     for i in range(4):
