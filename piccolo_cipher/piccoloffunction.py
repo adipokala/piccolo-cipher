@@ -29,7 +29,7 @@ def ffunction(x):
     for i in range(4):
         x4.append((x >> (4 * (3 - i))) & 0xffff)
     
-    F = ffield.FField(4)
+    F = ffield.FField(16)
     x4d = []
     for i in range(4):
         for k in range(4):

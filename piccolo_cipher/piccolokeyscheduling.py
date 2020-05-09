@@ -52,7 +52,7 @@ def generate_round_keys(bit, key):
                 rk.append(con2i ^ k[4])
                 rk.append(con2i1 ^ k[4])
     elif bit == 128:
-        for i in range(61):
+        for i in range(62):
             if (i + 2) % 8 == 0:
                 tmp = k
                 k[0] = tmp[2]
